@@ -1,6 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const databaseUrl =
+  process.env.DATABASE_URL ??
+  "postgresql://postgres:postgres@localhost:5432/prompthub?schema=public";
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: { url: databaseUrl },
+  },
+});
 
 async function main() {
   const user = await prisma.user.upsert({
