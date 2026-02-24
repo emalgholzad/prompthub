@@ -5,9 +5,7 @@ const databaseUrl =
   "postgresql://postgres:postgres@localhost:5432/prompthub?schema=public";
 
 const prisma = new PrismaClient({
-  datasources: {
-    db: { url: databaseUrl },
-  },
+  datasourceUrl: databaseUrl,
 });
 
 async function main() {
